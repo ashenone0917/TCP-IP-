@@ -12,8 +12,9 @@ int main(int argc, char* argv[])
 	SOCKADDR_IN servAddr;
 
 	char message[30]{};
-	int strLen;
-	if(argc != 3) {
+	int strLen = 0;
+	int idx = 0, readLen = 0;
+	if (argc != 3) {
 		std::cout << "Usage : " << argv[0] << " <IP> <port>\n";
 		exit(1);
 	}
@@ -27,18 +28,20 @@ int main(int argc, char* argv[])
 
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;
-	inet_pton(AF_INET,argv[1],&servAddr.sin_addr);
+	inet_pton(AF_INET, argv[1], &servAddr.sin_addr);
 	servAddr.sin_port = htons(atoi(argv[2]));
 
 	if (connect(hSocket, (SOCKADDR*)&servAddr, sizeof(servAddr)) == SOCKET_ERROR)
 		ErrorHandling("connect() error");
 
-	Sleep(1000);
+	while (readLen = recv(hSocket, &message[idx++], 1, 0)) {
+		if (readLen == -1) ErrorHandling("read() error!");
 
-	strLen = recv(hSocket, message, sizeof(message) - 1, 0);
-	if (strLen == -1)
-		ErrorHandling("recv() error");
+		strLen += readLen;
+		if (message[idx - 1] == '\0') break;
+	}
 	std::cout << "Message from server : " << message << std::endl;
+	std::cout << "Function read call count: " << strLen << std::endl;
 
 	closesocket(hSocket);
 	WSACleanup();
