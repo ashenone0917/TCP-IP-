@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello_client_win", "hello_c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "echo_server_win", "echo_server_win\echo_server_win.vcxproj", "{83BC0FF8-3C3D-43B8-9C0C-7110D7D6DB67}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tcp_client_win", "tcp_client_win2\tcp_client_win2.vcxproj", "{01F7A09D-2D8B-4BAE-94C5-3C734FDD4AF0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tcp_server_win", "tcp_server_win\tcp_server_win.vcxproj", "{7B280580-FD41-403E-803B-385E4B8E7D14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
